@@ -6,7 +6,7 @@ const PreviousSearch = () => {
   const { searchList } = useDataContext();
   return (
     <div>
-      <div className="bg-blue-500 sm:w-[600px] mx-auto flex flex-col py-3 rounded-lg mt-4">
+      <div className="bg-blue-500 sm:w-[600px] mx-auto flex flex-col py-3 rounded-lg">
         <h2 className="text-sm text-gray-200 text-light px-3 mb-1">
           Recently viewed cities
         </h2>

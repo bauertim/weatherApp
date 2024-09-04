@@ -6,6 +6,7 @@ export const DataContextProvider = ({ children }) => {
   const [weatherData, setWeatherData] = useState(null);
   const [searchList, setSearchList] = useState([]);
   const [city, setCity] = useState("Ljubljana");
+  const [forecastData, setForecastData] = useState(null);
 
   return (
     <DataContext.Provider
@@ -16,6 +17,8 @@ export const DataContextProvider = ({ children }) => {
         searchList,
         city,
         setCity,
+        forecastData,
+        setForecastData,
       }}
     >
       {children}

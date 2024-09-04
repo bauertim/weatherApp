@@ -3,8 +3,14 @@ import { useDataContext } from "../context/DataContext";
 import axios from "axios";
 
 const CityWeather = () => {
-  const { weatherData, city, setWeatherData, searchList, setSearchList } =
-    useDataContext();
+  const {
+    weatherData,
+    city,
+    setWeatherData,
+    searchList,
+    setSearchList,
+    setForecastData,
+  } = useDataContext();
 
   const fetchData = async () => {
     try {
@@ -15,7 +21,19 @@ const CityWeather = () => {
       );
       setWeatherData(response.data);
       setSearchList([response.data, ...searchList.slice(0, 4)]);
-      console.log(response.data);
+      // console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+
+    try {
+      const response = await axios.get(
+        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${
+          import.meta.env.VITE_OPENWEATHER_API_KEY
+        }`
+      );
+      setForecastData(response.data);
+      // console.log("forecast data:", response.data);
     } catch (error) {
       console.error(error);
     }
