@@ -69,7 +69,7 @@ const CityWeather = () => {
     >
       <motion.button
         onClick={() => setHideDiv(!hideDiv)}
-        className="flex flex-col bg-blue-500 text-white rounded-xl p-4 font-light sm:w-[600px] mx-auto bg-gradient-to-r from-blue-400 to-blue-500 sm:cursor-default w-full"
+        className="flex flex-col bg-blue-500 text-white rounded-xl p-4 font-light sm:w-[600px] mx-auto bg-gradient-to-r from-blue-400 to-blue-500 sm:cursor-default w-full sm:justify-between items-center sm:items-stretch"
       >
         {weatherData ? (
           <div className="flex flex-row items-center justify-center sm:justify-between sm:ml-8 ">
