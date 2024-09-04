@@ -3,10 +3,11 @@ import { useDataContext } from "../context/DataContext";
 import { useFormContext } from "../context/FormContext";
 import ReactGoogleAutocomplete from "react-google-autocomplete";
 import { useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const InputForm = () => {
   const { setInputValue, inputValue } = useFormContext();
-  const { setCity, city } = useDataContext();
+  const { setCity, city, errorFetch } = useDataContext();
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
@@ -24,7 +25,24 @@ const InputForm = () => {
 
   return (
     <>
-      <div className="flex text-black justify-center flex-row items-center">
+      <div className="flex text-black justify-center flex-row items-center relative">
+        <AnimatePresence initial={false}>
+          <motion.div
+            animate={{
+              opacity: [0, 1, 1, 0],
+              scale: [0, 1, 1, 0.1],
+            }}
+            transition={{
+              duration: 4.2,
+              times: [0, 0.1, 0.9, 1],
+            }}
+            key={errorFetch}
+            exit={{ opacity: 0, size: 0 }}
+            className="absolute -bottom-8 z-10 bg-red-500 px-4 py-3 rounded-lg text-lg text-white"
+          >
+            Can't find the city :/
+          </motion.div>
+        </AnimatePresence>
         <ReactGoogleAutocomplete
           apiKey={import.meta.env.VITE_GOOGLE_API_KEY}
           onPlaceSelected={(place) => {
@@ -44,7 +62,7 @@ const InputForm = () => {
           <Search size={24} />
         </button>
       </div>
-      {/* Input form without google autocomplete  */}
+      {/* !!! Input form without google autocomplete  !!!*/}
       {/* <form
         onSubmit={handleSubmit}
         className="flex text-black justify-center flex-row items-center"

@@ -7,6 +7,7 @@ export const DataContextProvider = ({ children }) => {
   const [searchList, setSearchList] = useState([]);
   const [city, setCity] = useState("Ljubljana");
   const [forecastData, setForecastData] = useState(null);
+  const [errorFetch, setErrorFetch] = useState(false);
 
   return (
     <DataContext.Provider
@@ -19,6 +20,8 @@ export const DataContextProvider = ({ children }) => {
         setCity,
         forecastData,
         setForecastData,
+        errorFetch,
+        setErrorFetch,
       }}
     >
       {children}

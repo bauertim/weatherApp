@@ -36,7 +36,7 @@ Create a new file named `.env` in the root of your project and add the following
 
 ```env
 VITE_OPENWEATHER_API_KEY=
-VITE_GOOGLE_API_KEY
+VITE_GOOGLE_API_KEY=
 ```
 
 Replace the placeholder values with your actual OpenWeather and Google Cloud API keys.
@@ -47,4 +47,3 @@ Using google autocomplete is optional, you can use the commented form in the Inp
 ```bash
 npm run dev
 ```
-

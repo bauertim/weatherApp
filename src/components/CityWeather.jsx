@@ -10,6 +10,8 @@ const CityWeather = () => {
     searchList,
     setSearchList,
     setForecastData,
+    errorFetch,
+    setErrorFetch,
   } = useDataContext();
 
   const fetchData = async () => {
@@ -20,10 +22,15 @@ const CityWeather = () => {
         }`
       );
       setWeatherData(response.data);
-      setSearchList([response.data, ...searchList.slice(0, 4)]);
+      setSearchList(
+        [response.data, ...searchList.slice(0, 5)].filter(
+          (v, i, a) => a.findIndex((t) => t.name === v.name) === i
+        )
+      );
       // console.log(response.data);
     } catch (error) {
-      console.error(error);
+      // console.error(error);
+      setErrorFetch(!errorFetch);
     }
 
     try {
