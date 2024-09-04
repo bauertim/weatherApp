@@ -10,7 +10,7 @@ const CityWeather = () => {
     try {
       const response = await axios.get(
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${
-          import.meta.env.VITE_OPENWEATHER
+          import.meta.env.VITE_OPENWEATHER_API_KEY
         }`
       );
       setWeatherData(response.data);

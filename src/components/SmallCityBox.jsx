@@ -14,7 +14,7 @@ const SmallCityBox = ({ search, index }) => {
         }}
         className="flex flex-row items-center bg-gradient-to-r from-blue-400 to-blue-500 rounded-sm px-3 border-y-[0.5px] w-full"
       >
-        <div className="w-20 flex">{search.name}</div>
+        <div className="w-28 flex">{search.name}</div>
         <img
           src={`http://openweathermap.org/img/wn/${search.weather[0].icon}.png`}
           alt="weather icon"
