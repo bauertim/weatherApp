@@ -24,7 +24,14 @@ const InputForm = () => {
   }, [city]);
 
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0, size: 0 }}
+      animate={{ opacity: 1, size: 1 }}
+      transition={{
+        duration: 0.8,
+        delay: 0.6,
+      }}
+    >
       <div className="flex text-black justify-center flex-row items-center relative">
         <AnimatePresence initial={false}>
           <motion.div
@@ -78,7 +85,7 @@ const InputForm = () => {
           Search
         </button>
       </form> */}
-    </>
+    </motion.div>
   );
 };
 

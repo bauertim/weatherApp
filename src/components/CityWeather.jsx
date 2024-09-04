@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDataContext } from "../context/DataContext";
 import axios from "axios";
+import { motion } from "framer-motion";
 
 const CityWeather = () => {
   const {
@@ -13,6 +14,7 @@ const CityWeather = () => {
     errorFetch,
     setErrorFetch,
   } = useDataContext();
+  const [hideDiv, setHideDiv] = useState(true);
 
   const fetchData = async () => {
     try {
@@ -51,8 +53,24 @@ const CityWeather = () => {
   }, [city]);
 
   return (
-    <div>
-      <div className="flex flex-col bg-blue-500 text-white rounded-xl p-4 font-light sm:w-[600px] mx-auto bg-gradient-to-r from-blue-400 to-blue-500">
+    <motion.div
+      initial={{
+        opacity: 0,
+        x: -100,
+      }}
+      animate={{
+        opacity: 1,
+        x: 0,
+      }}
+      transition={{
+        duration: 0.5,
+        delay: 0.2,
+      }}
+    >
+      <motion.button
+        onClick={() => setHideDiv(!hideDiv)}
+        className="flex flex-col bg-blue-500 text-white rounded-xl p-4 font-light sm:w-[600px] mx-auto bg-gradient-to-r from-blue-400 to-blue-500 sm:cursor-default w-full"
+      >
         {weatherData ? (
           <div className="flex flex-row items-center justify-center sm:justify-between sm:ml-8 ">
             <div className="flex flex-col items-center">
@@ -68,6 +86,16 @@ const CityWeather = () => {
                 src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`}
                 alt="weather icon"
               />
+              <div
+                className={`${
+                  hideDiv ? "hidden" : "sm:hidden flex flex-col"
+                } text-sm sm:mr-4 sm:mt-4`}
+              >
+                <p>Feels like : {weatherData.main.feels_like}°C</p>
+                <p>Humidity : {weatherData.main.humidity}%</p>
+                <p>Pressure : {weatherData.main.pressure}</p>
+                <p>Wind Speed : {weatherData.wind.speed}m/s</p>
+              </div>
             </div>
             <div className="hidden sm:flex"></div>
             <div className="text-sm hidden sm:flex sm:flex-col sm:mr-4 sm:mt-4">
@@ -80,8 +108,8 @@ const CityWeather = () => {
         ) : (
           <p>Search for weather</p>
         )}
-      </div>
-    </div>
+      </motion.button>
+    </motion.div>
   );
 };
 

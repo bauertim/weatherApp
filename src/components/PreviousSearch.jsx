@@ -1,11 +1,24 @@
-import { useFormContext } from "../context/FormContext";
 import { useDataContext } from "../context/DataContext";
 import SmallCityBox from "./SmallCityBox";
+import { motion } from "framer-motion";
 
 const PreviousSearch = () => {
   const { searchList } = useDataContext();
   return (
-    <div>
+    <motion.div
+      initial={{
+        opacity: 0,
+        x: -100,
+      }}
+      animate={{
+        opacity: 1,
+        x: 0,
+      }}
+      transition={{
+        duration: 0.5,
+        delay: 0.2,
+      }}
+    >
       <div className="bg-blue-500 sm:w-[600px] mx-auto flex flex-col py-3 rounded-lg">
         <h2 className="text-sm text-gray-200 text-light px-3 mb-1">
           Recently viewed cities
@@ -20,7 +33,7 @@ const PreviousSearch = () => {
           ))}
         </ul>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
